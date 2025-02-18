@@ -24,10 +24,11 @@
 
 #ifdef __cplusplus
 extern "C" {
-#   define LIQUID_USE_COMPLEX_H 0
 #else
-#   define LIQUID_USE_COMPLEX_H 1
+// #   define LIQUID_USE_COMPLEX_H 1
 #endif // __cplusplus
+
+#define LIQUID_USE_COMPLEX_H 0
 
 // common headers
 #include <inttypes.h>
