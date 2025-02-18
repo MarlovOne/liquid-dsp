@@ -31,75 +31,88 @@ extern "C"
 #endif // __cplusplus
 
 #if LIQUID_USE_COMPLEX_H == 1 && defined(__ANDROID__)
-#include <complex.h>
-#ifndef crealf
-    static inline float crealf(float _Complex z) { return __builtin_crealf(z); }
-#endif
-#ifndef cimagf
-    static inline float cimagf(float _Complex z) { return __builtin_cimagf(z); }
-#endif
-#ifndef conjf
-    static inline float _Complex conjf(float _Complex z) { return __builtin_conjf(z); }
-#endif
-#ifndef cabsf
-    static inline float cabsf(float _Complex z) { return __builtin_cabsf(z); }
-#endif
-#include <math.h> // for sqrt, etc.
-#ifndef conj
-    static inline double complex conj(double complex z)
-    {
-        return __builtin_conj(z);
-    }
-#endif
-#ifndef cexpf
-    static inline float complex cexpf(float complex z)
-    {
-        return __builtin_cexpf(z);
-    }
-#endif
-#ifndef creal
-    static inline double creal(double _Complex z)
-    {
-        return __builtin_creal(z);
-    }
-#endif
-#ifndef cimag
-    static inline double cimag(double _Complex z)
-    {
-        return __builtin_cimag(z);
-    }
-#endif
-#ifndef ccosf
-    static inline float complex ccosf(float complex z)
-    {
-        return __builtin_ccosf(z);
-    }
-#endif
-#ifndef csinf
-    static inline float complex csinf(float complex z)
-    {
-        return __builtin_csinf(z);
-    }
-#endif
-#ifndef csqrtf
-    static inline float complex csqrtf(float complex z)
-    {
-        return __builtin_csqrtf(z);
-    }
-#endif
-#ifndef cabs
-    static inline double cabs(double complex z)
-    {
-        return __builtin_cabs(z);
-    }
-#endif
-#ifndef cargf
-    static inline float cargf(float complex z)
-    {
-        return __builtin_cargf(z);
-    }
-#endif
-#define LIQUID_DEFINE_COMPLEX(R, C) typedef R _Complex C
+    // On Android, the standard <complex.h> may not properly declare all complex functions.
+    // We include <complex.h> and then provide inline fallback definitions using compiler built-ins.
+    #include <complex.h>
+    
+    // Provide fallback definitions for single-precision complex functions
+    #ifndef crealf
+        static inline float crealf(float _Complex z) { return __builtin_crealf(z); }
+    #endif
+    #ifndef cimagf
+        static inline float cimagf(float _Complex z) { return __builtin_cimagf(z); }
+    #endif
+    #ifndef conjf
+        static inline float _Complex conjf(float _Complex z) { return __builtin_conjf(z); }
+    #endif
+    #ifndef cabsf
+        static inline float cabsf(float _Complex z) { return __builtin_cabsf(z); }
+    #endif
+
+    // Include math header for math functions/constants (e.g., sqrt, M_PI, etc.)
+    #include <math.h>
+    
+    // Provide fallback definition for double-precision conjugate, if not declared
+    #ifndef conj
+        static inline double complex conj(double complex z) {
+            return __builtin_conj(z);
+        }
+    #endif
+    
+    // Provide fallback for single-precision complex exponential
+    #ifndef cexpf
+        static inline float complex cexpf(float complex z) {
+            return __builtin_cexpf(z);
+        }
+    #endif
+    
+    // Provide fallback definitions for double-precision real and imaginary parts
+    #ifndef creal
+        static inline double creal(double _Complex z) {
+            return __builtin_creal(z);
+        }
+    #endif
+    #ifndef cimag
+        static inline double cimag(double _Complex z) {
+            return __builtin_cimag(z);
+        }
+    #endif
+
+    // Provide fallback for single-precision cosine and sine of complex numbers
+    #ifndef ccosf
+        static inline float complex ccosf(float complex z) {
+            return __builtin_ccosf(z);
+        }
+    #endif
+    #ifndef csinf
+        static inline float complex csinf(float complex z) {
+            return __builtin_csinf(z);
+        }
+    #endif
+
+    // Provide fallback for single-precision complex square root
+    #ifndef csqrtf
+        static inline float complex csqrtf(float complex z) {
+            return __builtin_csqrtf(z);
+        }
+    #endif
+
+    // Provide fallback for double-precision absolute value of a complex number
+    #ifndef cabs
+        static inline double cabs(double complex z) {
+            return __builtin_cabs(z);
+        }
+    #endif
+
+    // Provide fallback for single-precision argument (phase) of a complex number
+    #ifndef cargf
+        static inline float cargf(float complex z) {
+            return __builtin_cargf(z);
+        }
+    #endif
+
+    // Define the complex type using the native C99 _Complex keyword
+    #define LIQUID_DEFINE_COMPLEX(R, C) typedef R _Complex C
 #endif
 
 // common headers

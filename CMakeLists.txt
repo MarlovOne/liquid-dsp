@@ -10,6 +10,8 @@ execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/version.sh
 project(liquid VERSION ${LIQUID_VERSION} LANGUAGES C CXX)
 
 if(CMAKE_CROSSCOMPILING)
+  # Note: Compiler cannot perform these test because host machine cannot execute it
+
   # For the C NEON test
   set(C_HAS_NEON_1_EXITCODE 0 CACHE INTERNAL "Exit code for C NEON test run")
   set(C_HAS_NEON_1_OUTPUT "" CACHE INTERNAL "Output for C NEON test run")
@@ -21,6 +23,10 @@ if(CMAKE_CROSSCOMPILING)
   # For the C++ AVX512 test
   set(CXX_HAS_AVX512_2_EXITCODE 0 CACHE INTERNAL "Exit code for C++ AVX512 test run")
   set(CXX_HAS_AVX512_2_OUTPUT "" CACHE INTERNAL "Output for C++ AVX512 test run")
+
+  # For the C++ AVX2 Test
+  set(CXX_HAS_AVX2_2_EXITCODE 0 CACHE INTERNAL "Exit code for C++ AVX2 test run")
+  set(CXX_HAS_AVX2_2_OUTPUT "" CACHE INTERNAL "Output for C++ AVX2 test run")
 endif()
 
 # ---------------------------------------- options ----------------------------------------
