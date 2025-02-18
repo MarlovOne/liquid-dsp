@@ -23,6 +23,8 @@ if(CMAKE_CROSSCOMPILING AND ANDROID)
   # For the C++ AVX512 test
   set(CXX_HAS_AVX512_2_EXITCODE 0 CACHE INTERNAL "Exit code for C++ AVX512 test run")
   set(CXX_HAS_AVX512_2_OUTPUT "" CACHE INTERNAL "Output for C++ AVX512 test run")
+  set(C_HAS_AVX512_2_EXITCODE 0 CACHE INTERNAL "Exit code for C AVX512 test run")
+  set(C_HAS_AVX512_2_OUTPUT "" CACHE INTERNAL "Output for C AVX512 test run")
 
   # For the C++ AVX2 Test
   set(CXX_HAS_AVX2_2_EXITCODE 0 CACHE INTERNAL "Exit code for C++ AVX2 test run")
@@ -31,6 +33,7 @@ if(CMAKE_CROSSCOMPILING AND ANDROID)
   # Assume SSE4.1 is supported on your target; if not, adjust the exit code accordingly.
   set(CXX_HAS_SSE4_1_EXITCODE 0 CACHE INTERNAL "Exit code for C++ SSE4.1 test run")
   set(CXX_HAS_SSE4_1_OUTPUT "" CACHE INTERNAL "Output for C++ SSE4.1 test run")
+
 endif()
 
 # ---------------------------------------- options ----------------------------------------
