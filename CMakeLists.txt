@@ -17,6 +17,10 @@ if(CMAKE_CROSSCOMPILING)
   # For the C++ NEON test
   set(CXX_HAS_NEON_1_EXITCODE 0 CACHE INTERNAL "Exit code for C++ NEON test run")
   set(CXX_HAS_NEON_1_OUTPUT "" CACHE INTERNAL "Output for C++ NEON test run")
+
+  # For the C++ AVX512 test
+  set(CXX_HAS_AVX512_2_EXITCODE 0 CACHE INTERNAL "Exit code for C++ AVX512 test run")
+  set(CXX_HAS_AVX512_2_OUTPUT "" CACHE INTERNAL "Output for C++ AVX512 test run")
 endif()
 
 # ---------------------------------------- options ----------------------------------------
@@ -276,7 +280,6 @@ add_library(vector OBJECT
 
 
 # ---------------------------------------- SIMD extensions ----------------------------------------
-set(C_NEON_FOUND FALSE)
 if (C_NEON_FOUND AND ENABLE_SIMD)
     target_sources(dotprod PUBLIC
         src/dotprod/src/dotprod_cccf.neon.c
