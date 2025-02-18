@@ -377,7 +377,7 @@ endif(COVERAGE)
 
 target_link_libraries(${LIBNAME} c m)
 
-set_target_properties(${LIBNAME} PROPERTIES VERSION ${LIQUID_VERSION} SOVERSION 1)
+# set_target_properties(${LIBNAME} PROPERTIES VERSION ${LIQUID_VERSION} SOVERSION 1)
 
 # see: https://cmake.org/cmake/help/latest/command/install.html#examples
 # TODO: uninstall?
