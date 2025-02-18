@@ -11,11 +11,11 @@ project(liquid VERSION ${LIQUID_VERSION} LANGUAGES C CXX)
 
 if(CMAKE_CROSSCOMPILING)
   # For the C NEON test
-  set(C_HAS_NEON_1_EXITCODE 0 CACHE INTERNAL "Exit code for C NEON test run")
+  set(C_HAS_NEON_1_EXITCODE 1 CACHE INTERNAL "Exit code for C NEON test run")
   set(C_HAS_NEON_1_OUTPUT "" CACHE INTERNAL "Output for C NEON test run")
 
   # For the C++ NEON test
-  set(CXX_HAS_NEON_1_EXITCODE 0 CACHE INTERNAL "Exit code for C++ NEON test run")
+  set(CXX_HAS_NEON_1_EXITCODE 1 CACHE INTERNAL "Exit code for C++ NEON test run")
   set(CXX_HAS_NEON_1_OUTPUT "" CACHE INTERNAL "Output for C++ NEON test run")
 endif()
 
