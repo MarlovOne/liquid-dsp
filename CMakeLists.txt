@@ -9,7 +9,7 @@ execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/version.sh
 # project definition
 project(liquid VERSION ${LIQUID_VERSION} LANGUAGES C CXX)
 
-if(CMAKE_CROSSCOMPILING AND ANDROID)
+if(CMAKE_CROSSCOMPILING)
   # Note: Compiler cannot perform these test because host machine cannot execute it
 
   # For the C NEON test
