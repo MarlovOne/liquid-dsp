@@ -64,9 +64,12 @@ set(LIBNAME liquid)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
-set(CMAKE_CXX_STANDARD 14 CACHE STRING "C++ version selection")  # or 11, 14, 17, 20
-set(CMAKE_CXX_STANDARD_REQUIRED ON)  # optional, ensure standard is supported
-#set(CMAKE_CXX_EXTENSIONS OFF)  # optional, keep compiler extensions off
+if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+  # Only set the C++ standard for the top-level project.
+  set(CMAKE_CXX_STANDARD 14 CACHE STRING "C++ version selection")  # Options: 11, 14, 17, 20
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)  # Ensure the compiler supports the requested standard
+  #set(CMAKE_CXX_EXTENSIONS OFF)  # Optionally disable compiler-specific extensions
+endif()
 
 include (CheckIncludeFile)
 include (CheckFunctionExists)
